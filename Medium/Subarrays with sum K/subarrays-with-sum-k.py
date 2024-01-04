@@ -1,0 +1,36 @@
+#User function Template for python3
+
+class Solution:
+    def findSubArraySum(self, Arr, N, k):
+        # code here
+        preSums = dict()
+        preSums[0] = 1
+        res = 0
+        curr = 0
+        for r in range(N):
+            curr += Arr[r]
+            
+            removeSum = curr - k 
+            if(removeSum in preSums):
+                res += preSums[removeSum]
+            
+            preSums[curr] = preSums.get(curr, 0) + 1
+        
+        return res
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range (t):
+        N = int(input())
+        Arr = input().split()
+        for itr in range(N):
+            Arr[itr] = int(Arr[itr])
+        k = int(input())
+        ob = Solution()
+        print(ob.findSubArraySum(Arr, N, k))
+# } Driver Code Ends
